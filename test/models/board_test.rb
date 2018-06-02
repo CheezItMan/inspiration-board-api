@@ -10,6 +10,6 @@ describe Board do
   it "is not valid without a name" do
     board.name = nil
 
-    expect(board.valid?).to_be_falsy
+    expect(board.valid?).must_equal false
   end
 end
