@@ -12,4 +12,12 @@ describe Board do
 
     expect(board.valid?).must_equal false
   end
+
+  it "is not valid with a duplicate name" do
+    board = Board.new
+    board.name = boards(:adas).name
+
+    expect(board.valid?).must_equal false
+    expect(board.errors[:name]).must_include "has already been taken"
+  end
 end
