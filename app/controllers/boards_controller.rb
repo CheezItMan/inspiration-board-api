@@ -13,7 +13,7 @@ class BoardsController < ApplicationController
     @board = Board.find_by(id: params[:id])
 
     @board.update(board_params)
-    if @board && !board.valid?
+    if @board && !@board.valid?
       render json: {ok: false, cause: "validation errors", errors: @board.errors}, status: :bad_request
     elsif @board.nil?
       render json: {ok: false, cause: :not_found}, status: :not_found

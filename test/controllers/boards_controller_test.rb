@@ -142,4 +142,29 @@ describe BoardsController do
     end
   end
 
+  describe "update" do
+
+    it "can update a board" do
+      # Arrange
+      board = boards(:adas)
+      board.name = "testing!"
+      board_hash = board.as_json
+
+      # Act
+      patch board_path(board.id), params: board_hash
+      body = JSON.parse(response.body)
+
+      # Assert
+      expect(response).must_be :successful?
+      expect(response.header['Content-Type']).must_include 'json'
+      expect(body.keys).must_include "board"
+      expect(body["board"].keys).must_include "id"
+      expect(body["board"]["name"]).must_equal board.name
+    end
+
+    it "will report errors if it can't update a board" do
+
+    end
+  end
+
 end
