@@ -127,11 +127,44 @@ describe CardsController do
   describe "update" do
 
     it "can update a card" do
+      # Arrange
+      card = boards(:adas).cards.first
+      card.title = "testing!"
+      card_hash = card.as_json
 
+      # Act
+      patch board_card_path(board.id, card.id), params: card_hash
+      body = JSON.parse(response.body)
+
+      # Assert
+      expect(response).must_be :successful?
+      expect(response.header['Content-Type']).must_include 'json'
+      expect(body.keys).must_include "card"
+      expect(body["card"].keys).must_include "id"
+      expect(body["card"]["title"]).must_equal card.title
     end
 
-    it "will report if it can't update a card" do
+    it "will report errors if it can't update a card" do
+      # Arrange
+      card = boards(:adas).cards.first
+      card.title = ""
+      card_hash = card.as_json
 
+      # Act
+      patch board_card_path(board.id, card.id), params: card_hash
+      body = JSON.parse(response.body)
+
+      # Assert
+      expect(response).must_be :bad_request?
+      expect(response.header['Content-Type']).must_include 'json'
+      ["ok", "cause", "errors"].each do |key|
+        expect(body.keys).must_include key
+      end
+
+      expect(body["ok"]).must_equal false
+      expect(body["cause"]).must_equal "validation errors"
+      expect(body["errors"].keys).must_include "title"
+      expect(body["errors"]["title"]).must_include "can't be blank"
     end
   end
 

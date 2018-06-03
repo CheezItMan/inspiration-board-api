@@ -34,6 +34,12 @@ class CardsController < ApplicationController
   end
 
   def update
+    @card = Card.find_by(id: params[:id])
+    @card.update(card_params)
+
+    if !@card.valid?
+      render json: {ok: false, cause: "validation errors", errors: @card.errors}, status: :bad_request
+    end
   end
 
   private
