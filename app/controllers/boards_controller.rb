@@ -10,9 +10,25 @@ class BoardsController < ApplicationController
   end
 
   def update
+    @board = Board.find_by(id: params[:id])
+
+    @board.update(board_params)
+    if @board && !board.valid?
+      render json: {ok: false, cause: "validation errors", errors: @board.errors}, status: :bad_request
+    elsif @board.nil?
+      render json: {ok: false, cause: :not_found}, status: :not_found
+    end
+
   end
 
   def destroy
+    @board = Board.find_by(id: params[:id])
+
+    if @board
+      @board.destroy
+    else
+      render json: {ok: false, cause: :not_found}, status: :not_found if @board.nil?
+    end
   end
 
   def create

@@ -105,8 +105,41 @@ describe BoardsController do
       expect(body["errors"].keys).must_include "name"
       expect(body["errors"]["name"]).must_include "has already been taken"
     end
+  end
 
+  describe "destroy" do
+    it "will delete an existing board" do
+      # Arrange
+      adas = boards(:adas)
 
+      # Act
+      delete board_path(adas)
+      body = JSON.parse(response.body)
+
+      # Assert
+      expect(response).must_be :successful?
+      expect(response.header['Content-Type']).must_include 'json'
+      expect(body.keys).must_include "board"
+      expect(body["board"].keys).must_include "id"
+
+      expect(Board.find_by(id: adas.id)).must_be_nil
+    end
+
+    it "will inform us if the board to be deleted doesn't exist" do
+      # Arrange
+      adas = boards(:adas)
+      adas.destroy
+
+      # Act
+      delete board_path(adas)
+      body = JSON.parse(response.body)
+
+      # Assert
+      expect(response).must_be :not_found?
+      expect(response.header['Content-Type']).must_include 'json'
+      expect(body["ok"]).must_equal false
+      expect(body["cause"]).must_equal "not_found"
+    end
   end
 
 end
