@@ -25,7 +25,7 @@ class BoardsController < ApplicationController
     @board = Board.find_by(id: params[:id])
 
     if @board
-      @board.destroy
+      @board.destroy_board
     else
       render json: {ok: false, cause: :not_found}, status: :not_found if @board.nil?
     end

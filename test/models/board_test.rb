@@ -20,4 +20,13 @@ describe Board do
     expect(board.valid?).must_equal false
     expect(board.errors[:name]).must_include "has already been taken"
   end
+
+  describe "relationships" do
+
+    it "can have many cards" do
+      expect(board.cards.length).must_equal 2
+    end
+
+
+  end
 end

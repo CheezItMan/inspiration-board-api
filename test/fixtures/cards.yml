@@ -4,10 +4,10 @@ one:
   title: MyString
   content: MyString
   image_url: MyString
-  board: one
+  board: adas
 
 two:
   title: MyString
   content: MyString
   image_url: MyString
-  board: two
+  board: adas

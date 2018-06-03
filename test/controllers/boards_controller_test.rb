@@ -43,7 +43,7 @@ describe BoardsController do
     it "responds with not_found if given an invalid id" do
       # Arrange
       adas = boards(:adas)
-      adas.destroy
+      adas.destroy_board
       # Act
       get board_path(adas.id)
       body = JSON.parse(response.body)
@@ -128,7 +128,7 @@ describe BoardsController do
     it "will inform us if the board to be deleted doesn't exist" do
       # Arrange
       adas = boards(:adas)
-      adas.destroy
+      adas.destroy_board
 
       # Act
       delete board_path(adas)
