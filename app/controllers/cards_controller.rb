@@ -44,6 +44,6 @@ class CardsController < ApplicationController
 
   private
     def card_params
-      return params.permit(:title, :content, :image_url, :board_id)
+      return params.permit(:text, :image_url, :board_id, :id)
     end
 end

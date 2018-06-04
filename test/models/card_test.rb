@@ -10,14 +10,15 @@ describe Card do
     expect(card).must_be :valid?
   end
 
-  it "is invalid without a title" do
+  it "is invalid without text or image_url" do
     # Act
-    card.title = nil
+    card.text = nil
+    card.image_url = nil
 
     # Assert
     expect(card.valid?).must_equal false
-    expect(card.errors.keys).must_include :title
-    expect(card.errors[:title]).must_include "can't be blank"
+    expect(card.errors.keys).must_include :text
+    expect(card.errors[:text]).must_include "can't be blank"
   end
 
   describe "relationships" do

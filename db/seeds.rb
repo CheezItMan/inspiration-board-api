@@ -13,7 +13,7 @@
 end
 
 20.times do
-  card = Card.new content: Faker::Hobbit.quote, title: Faker::Hobbit.character
+  card = Card.new text: Faker::Hobbit.quote
   card.board = Board.all.sample
   card.save
 end

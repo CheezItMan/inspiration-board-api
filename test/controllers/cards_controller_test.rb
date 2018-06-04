@@ -54,7 +54,7 @@ describe CardsController do
       expect(response).must_be :successful?
       expect(response.header['Content-Type']).must_include 'json'
       expect(body.keys).must_include "card"
-      ["id", "title", "content", "image_url"].each do |field|
+      ["id", "text", "image_url"].each do |field|
         expect(body["card"].keys).must_include field
       end
 
@@ -83,7 +83,7 @@ describe CardsController do
     it "should get create" do
       # Arrange
       card = {
-        title: "You are totally awesome",
+        text: "You are totally awesome",
         board_id: board.id
       }
 
@@ -94,7 +94,7 @@ describe CardsController do
       value(response).must_be :successful?
       expect(response.header['Content-Type']).must_include 'json'
       expect(body.keys).must_include "card"
-      ["id", "title", "content", "image_url"].each do |field|
+      ["id", "text", "image_url"].each do |field|
         expect(body["card"].keys).must_include field
         if (!card[field].nil?)
           expect(body["card"][field]).must_equal card[field.to_sym] if field != "id"
@@ -119,8 +119,8 @@ describe CardsController do
 
       expect(body["ok"]).must_equal false
       expect(body["cause"]).must_equal "validation errors"
-      expect(body["errors"].keys).must_include "title"
-      expect(body["errors"]["title"]).must_include "can't be blank"
+      expect(body["errors"].keys).must_include "text"
+      expect(body["errors"]["text"]).must_include "can't be blank"
     end
   end
 
@@ -129,7 +129,7 @@ describe CardsController do
     it "can update a card" do
       # Arrange
       card = boards(:adas).cards.first
-      card.title = "testing!"
+      card.text = "testing!"
       card_hash = card.as_json
 
       # Act
@@ -141,13 +141,13 @@ describe CardsController do
       expect(response.header['Content-Type']).must_include 'json'
       expect(body.keys).must_include "card"
       expect(body["card"].keys).must_include "id"
-      expect(body["card"]["title"]).must_equal card.title
+      expect(body["card"]["text"]).must_equal card.text
     end
 
     it "will report errors if it can't update a card" do
       # Arrange
       card = boards(:adas).cards.first
-      card.title = ""
+      card.text = ""
       card_hash = card.as_json
 
       # Act
@@ -163,8 +163,8 @@ describe CardsController do
 
       expect(body["ok"]).must_equal false
       expect(body["cause"]).must_equal "validation errors"
-      expect(body["errors"].keys).must_include "title"
-      expect(body["errors"]["title"]).must_include "can't be blank"
+      expect(body["errors"].keys).must_include "text"
+      expect(body["errors"]["text"]).must_include "can't be blank"
     end
   end
 
