@@ -19,13 +19,20 @@ Bundler.require(*Rails.groups)
 
 module AdasInspiringBoardApi
   class Application < Rails::Application
-  config.generators do |g|
-    # Force new test files to be generated in the minitest-spec style
-    g.test_framework :minitest, spec: true
+    config.generators do |g|
+      # Force new test files to be generated in the minitest-spec style
+      g.test_framework :minitest, spec: true
 
-    # Always use .js files, never .coffee
-    g.javascript_engine :js
-  end
+      # Always use .js files, never .coffee
+      g.javascript_engine :js
+    end
+
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins '*'
+        resource '*', headers: :any, methods: [:get, :post, :patch, :delete, :options]
+      end
+    end
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
 
