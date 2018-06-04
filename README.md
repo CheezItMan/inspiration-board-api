@@ -19,8 +19,7 @@ This API is intended for use with our second React project Ada's Inpiration Boar
   - **Add a New Card:**
     - POST https://inspiration-bard.herokuapp.com/boards/:board_id/cards
     - accepted params:
-      - title (string)
-      - content (string)
+      - text (string)
       - image_url (string)
 
 ## Update Data
@@ -31,8 +30,7 @@ This API is intended for use with our second React project Ada's Inpiration Boar
 
 - **Update a card**
   - PATCH https://inspiration-bard.herokuapp.com/boards/:board_id/cards/:card_id
-  - title (string)
-  - content (string)
+  - text (string)
   - image_url (string)
 
 ## Delete Data
