@@ -1,24 +1,42 @@
-# README
+# Ada's Inspiration Board API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This API is intended for use with our second React project Ada's Inpiration Board.
 
-Things you may want to cover:
+## Retrieve Data
+  - **Retrieve list of all Boards:** http://localhost:3000/boards
 
-* Ruby version
+  - **Retrieve list of cards for a single board From ID:** http://localhost:3000/boards/1
 
-* System dependencies
+  - **Retrieve specific card:** http://localhost:3000/boards/:board_id/cards/:card_id
 
-* Configuration
+## Send Data
 
-* Database creation
+  - **Create a board:**
+    - POST http://localhost:3000/boards
+    - accepted params:
+      - name (string)
 
-* Database initialization
+  - **Add a New Card:**
+    - POST http://localhost:3000/boards/:board_id/cards
+    - accepted params:
+      - title (string)
+      - content (string)
+      - image_url (string)
 
-* How to run the test suite
+## Update Data
 
-* Services (job queues, cache servers, search engines, etc.)
+- **Update a board**
+  - PATCH http://localhost:3000/boards/:board_id
+    - name (string)
 
-* Deployment instructions
+- **Update a card**
+  - PATCH http://localhost:3000/boards/:board_id/cards/:card_id
+  - title (string)
+  - content (string)
+  - image_url (string)
 
-* ...
+## Delete Data
+- **Delete a board, warning destroys all card data for that board**
+  - DELETE http://localhost:3000/boards/:board_id
+- **Delete a card**
+  - DELETE http://localhost:3000/boards/:board_id/cards/:card_id
