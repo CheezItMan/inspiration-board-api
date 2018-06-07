@@ -5,7 +5,7 @@ describe CardsController do
 
   it "should get index" do
     # Act
-    get board_cards_path(board.id)
+    get board_cards_path(board.name)
 
     # Assert
     expect(response).must_be :successful?
@@ -19,7 +19,7 @@ describe CardsController do
       card = board.cards.first
 
       # Act
-      get board_card_path(board.id, card.id)
+      get board_card_path(board.name, card.id)
 
       # Assert
       expect(response).must_be :successful?
@@ -31,7 +31,7 @@ describe CardsController do
       card.destroy
 
       # Act
-      get board_card_path(board.id, card.id)
+      get board_card_path(board.name, card.id)
       body = JSON.parse(response.body)
 
       # Assert
@@ -46,8 +46,9 @@ describe CardsController do
       # Arrange
       card = board.cards.first
 
+
       # Act
-      delete board_card_path(board.id, card.id)
+      delete board_card_path(board.name, card.id)
       body = JSON.parse(response.body)
 
       # Assert
@@ -66,7 +67,7 @@ describe CardsController do
       card.destroy
 
       # Act
-      delete board_card_path(board.id, card.id)
+      delete board_card_path(board.name, card.id)
       body = JSON.parse(response.body)
 
       # Assert
@@ -84,11 +85,11 @@ describe CardsController do
       # Arrange
       card = {
         text: "You are totally awesome",
-        board_id: board.id
+        board_name: board.name
       }
 
       # Act
-      post board_cards_path(board.id), params: card
+      post board_cards_path(board.name), params: card
       body = JSON.parse(response.body)
 
       value(response).must_be :successful?
@@ -108,7 +109,7 @@ describe CardsController do
       }
 
       # Act
-      post board_cards_path(board.id), params: card
+      post board_cards_path(board.name), params: card
       body = JSON.parse(response.body)
 
       value(response).must_be :bad_request?
@@ -133,7 +134,7 @@ describe CardsController do
       card_hash = card.as_json
 
       # Act
-      patch board_card_path(board.id, card.id), params: card_hash
+      patch board_card_path(board.name, card.id), params: card_hash
       body = JSON.parse(response.body)
 
       # Assert
@@ -151,7 +152,7 @@ describe CardsController do
       card_hash = card.as_json
 
       # Act
-      patch board_card_path(board.id, card.id), params: card_hash
+      patch board_card_path(board.name, card.id), params: card_hash
       body = JSON.parse(response.body)
 
       # Assert
