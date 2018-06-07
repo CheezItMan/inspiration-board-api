@@ -120,7 +120,7 @@ describe CardsController do
       expect(body["ok"]).must_equal false
       expect(body["cause"]).must_equal "validation errors"
       expect(body["errors"].keys).must_include "text"
-      expect(body["errors"]["text"]).must_include "can't be blank"
+      expect(body["errors"]["text"]).must_include "invalid text or missing emoji"
     end
   end
 
@@ -164,7 +164,7 @@ describe CardsController do
       expect(body["ok"]).must_equal false
       expect(body["cause"]).must_equal "validation errors"
       expect(body["errors"].keys).must_include "text"
-      expect(body["errors"]["text"]).must_include "can't be blank"
+      expect(body["errors"]["text"]).must_include "invalid text or missing emoji"
     end
   end
 
