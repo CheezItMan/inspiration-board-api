@@ -1,6 +1,9 @@
 class CardsController < ApplicationController
   def index
     board = Board.find_by(name: params[:board_name])
+    if board.nil?
+      board = Board.create(name: params[:board_name])
+    end
 
     if board
       @cards = board.cards

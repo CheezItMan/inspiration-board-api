@@ -13,6 +13,19 @@ describe CardsController do
 
   end
 
+  it "will create a board if using a board name that doesn't exist" do
+
+    # Act
+    get board_cards_path("pasta")
+    body = JSON.parse(response.body)
+
+    # Assert
+    expect(Board.find_by(name: "pasta")).wont_be_nil
+    expect(response.header['Content-Type']).must_include 'json'
+    expect(body).must_be_instance_of Array
+    expect(body.length).must_equal 0
+  end
+
   describe "show" do
     it "should get show" do
       # Arrange
