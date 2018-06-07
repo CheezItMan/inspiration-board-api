@@ -6,7 +6,7 @@ class BoardsController < ApplicationController
   def show
     @board = Board.find_by(name: params[:name])
     if @board.nil? && !params[:name].nil? && params[:name] != ""
-      @board = Board.create(name: params[:name])
+      @board = Board.create_new_board(params[:name])
     end
 
     render json: {ok: false, cause: :bad_request}, status: :bad_request if @board.nil?
@@ -23,7 +23,7 @@ class BoardsController < ApplicationController
   end
 
   def create
-    @board = Board.create(board_params)
+    @board = Board.create_new_board(board_params[:name])
 
     if !@board.valid?
       render json: {ok: false, cause: "validation errors", errors: @board.errors}, status: :bad_request

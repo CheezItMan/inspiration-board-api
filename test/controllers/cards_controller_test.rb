@@ -23,7 +23,7 @@ describe CardsController do
     expect(Board.find_by(name: "pasta")).wont_be_nil
     expect(response.header['Content-Type']).must_include 'json'
     expect(body).must_be_instance_of Array
-    expect(body.length).must_equal 0
+    expect(body.length).must_equal Board.first.cards.length
   end
 
   describe "show" do

@@ -2,7 +2,7 @@ class CardsController < ApplicationController
   def index
     board = Board.find_by(name: params[:board_name])
     if board.nil?
-      board = Board.create(name: params[:board_name])
+      board = Board.create_new_board(params[:board_name])
     end
 
     if board
@@ -33,7 +33,7 @@ class CardsController < ApplicationController
 
     @card.board = Board.find_by(name: params[:board_name])
     if @card.board.nil?
-      @card.board = Board.new name: params[:board_name]
+      @card.board = Board.create_new_board params[:board_name]
     end
 
     @card.save
@@ -47,7 +47,7 @@ class CardsController < ApplicationController
     @card = Card.find_by(id: params[:id])
     @card.board = Board.find_by(name: params[:board_name])
     if @card.board.nil?
-      @card.board = Board.new name: params[:board_name]
+      @card.board = Board.create_new_board params[:board_name]
     end
     @card.update(card_params)
 

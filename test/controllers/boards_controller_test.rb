@@ -41,18 +41,14 @@ describe BoardsController do
     end
 
     it "responds by creating a board if the board name isn't in the DB" do
-      # Arrange
-      adas = boards(:adas)
-      adas.destroy_board
       # Act
-      get board_path(adas.name)
+      get board_path('new-board')
       body = JSON.parse(response.body)
 
       # Assert
       expect(response).must_be :successful?
       expect(response.header['Content-Type']).must_include 'json'
-
-      expect(Board.find_by(name: adas.name)).wont_be_nil
+      expect(Board.find_by(name: 'new-board')).wont_be_nil
     end
   end
 
