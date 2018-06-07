@@ -1,5 +1,5 @@
 
-VALID_EMOJIS = ["bowtie", "thumbsup", "clap", "sparkling_heart", "heart_eyes_cat", "dog"]
+VALID_EMOJIS = ["heart_eyes", "beer", "clap", "sparkling_heart", "heart_eyes_cat", "dog"]
 
 class Card < ApplicationRecord
   belongs_to :board
