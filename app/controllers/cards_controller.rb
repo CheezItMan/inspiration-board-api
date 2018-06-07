@@ -32,6 +32,10 @@ class CardsController < ApplicationController
     @card = Card.new(card_params)
 
     @card.board = Board.find_by(name: params[:board_name])
+    if @card.board.nil?
+      @card.board = Board.new name: params[:board_name]
+    end
+
     @card.save
 
     if !@card.valid?
@@ -42,6 +46,9 @@ class CardsController < ApplicationController
   def update
     @card = Card.find_by(id: params[:id])
     @card.board = Board.find_by(name: params[:board_name])
+    if @card.board.nil?
+      @card.board = Board.new name: params[:board_name]
+    end
     @card.update(card_params)
 
     if !@card.valid?
