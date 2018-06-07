@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-VALID_EMOJIS = ["👍", "💯", "🍺", "😊", "🐱", "🐶", "🛌"]
+VALID_EMOJIS = ["&#1F44E", "&#1F680", "&#1F37A", "&#1F601", "&#1F63A", "&#1F436", "&#1F6CF	"]
 
 Board.create(name: 'Ada-Lovelace')
 

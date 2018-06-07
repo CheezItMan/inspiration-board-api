@@ -23,7 +23,7 @@ describe Card do
 
   it "is valid with an emoji alone" do
     card.text = nil
-    VALID_EMOJIS = ["👍", "💯", "🍺", "😊", "🐱", "🐶", "🛌"]
+    VALID_EMOJIS = ["&#1F44E", "&#1F680", "&#1F37A", "&#1F601", "&#1F63A", "&#1F436", "&#1F6CF	"]
 
     VALID_EMOJIS.each do |emoji|
       card.emoji = emoji

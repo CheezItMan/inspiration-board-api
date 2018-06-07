@@ -1,5 +1,5 @@
 
-VALID_EMOJIS = ["👍", "💯", "🍺", "😊", "🐱", "🐶", "🛌"]
+VALID_EMOJIS = ["&#1F44E", "&#1F680", "&#1F37A", "&#1F601", "&#1F63A", "&#1F436", "&#1F6CF	"]
 
 class Card < ApplicationRecord
   belongs_to :board
