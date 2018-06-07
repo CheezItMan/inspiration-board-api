@@ -54,7 +54,7 @@ describe CardsController do
       expect(response).must_be :successful?
       expect(response.header['Content-Type']).must_include 'json'
       expect(body.keys).must_include "card"
-      ["id", "text", "image_url"].each do |field|
+      ["id", "text", "emoji"].each do |field|
         expect(body["card"].keys).must_include field
       end
 
@@ -94,7 +94,7 @@ describe CardsController do
       value(response).must_be :successful?
       expect(response.header['Content-Type']).must_include 'json'
       expect(body.keys).must_include "card"
-      ["id", "text", "image_url"].each do |field|
+      ["id", "text", "emoji"].each do |field|
         expect(body["card"].keys).must_include field
         if (!card[field].nil?)
           expect(body["card"][field]).must_equal card[field.to_sym] if field != "id"
