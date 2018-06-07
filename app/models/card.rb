@@ -4,9 +4,13 @@ VALID_EMOJIS = ["👍", "💯", "🍺", "😊", "🐱", "🐶", "🛌"]
 class Card < ApplicationRecord
   belongs_to :board
 
-  validates :text, presence: { if: :emoji_valid?, message: "invalid text or emoji" }
+  validate :valid_fields
 
-  def emoji_valid?
-    return self.emoji.nil?  || VALID_EMOJIS.includes?(self.emoji)
+
+  def valid_fields
+    if ((self.text.nil? || self.text.length < 1) && \
+      !VALID_EMOJIS.include?(self.emoji))
+      errors.add(:text, "invalid text or missing emoji")
+    end
   end
 end
