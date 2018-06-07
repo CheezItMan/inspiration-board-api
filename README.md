@@ -3,38 +3,34 @@
 This API is intended for use with our second React project Ada's Inpiration Board.
 
 ## Retrieve Data
-  - **Retrieve list of all Boards:** https://inspiration-bard.herokuapp.com/boards
+  - **Retrieve list of all Boards:** https://inspiration-board.herokuapp.com/boards
 
-  - **Retrieve list of cards for a single board From ID:** https://inspiration-bard.herokuapp.com/boards/1
+  - **Retrieve list of cards for a single board From Name:** https://inspiration-board.herokuapp.com/boards/Ada-Lovelace/cards
 
-  - **Retrieve specific card:** https://inspiration-bard.herokuapp.com/boards/:board_id/cards/:card_id
+  - **Retrieve specific card:** https://inspiration-board.herokuapp.com/boards/:board_name/cards/:card_id
 
 ## Send Data
 
   - **Create a board:**
-    - POST https://inspiration-bard.herokuapp.com/boards
+    - POST https://inspiration-board.herokuapp.com/boards
     - accepted params:
       - name (string)
 
   - **Add a New Card:**
-    - POST https://inspiration-bard.herokuapp.com/boards/:board_id/cards
+    - POST https://inspiration-board.herokuapp.com/boards/:board_name/cards
     - accepted params:
       - text (string)
-      - image_url (string)
+      - emoji (string)
 
 ## Update Data
 
-- **Update a board**
-  - PATCH https://inspiration-bard.herokuapp.com/boards/:board_id
-    - name (string)
-
 - **Update a card**
-  - PATCH https://inspiration-bard.herokuapp.com/boards/:board_id/cards/:card_id
+  - PATCH https://inspiration-board.herokuapp.com/boards/:board_name/cards/:card_id
   - text (string)
-  - image_url (string)
+  - emoji (string)
 
 ## Delete Data
 - **Delete a board, warning destroys all card data for that board**
-  - DELETE https://inspiration-bard.herokuapp.com/boards/:board_id
+  - DELETE https://inspiration-board.herokuapp.com/boards/:board_name
 - **Delete a card**
-  - DELETE https://inspiration-bard.herokuapp.com/boards/:board_id/cards/:card_id
+  - DELETE https://inspiration-board.herokuapp.com/boards/:board_name/cards/:card_id
