@@ -40,7 +40,7 @@ describe BoardsController do
       expect(response).must_be :successful?
     end
 
-    it "responds with not_found if given an invalid id" do
+    it "responds by creating a board if the board name isn't in the DB" do
       # Arrange
       adas = boards(:adas)
       adas.destroy_board
@@ -49,10 +49,10 @@ describe BoardsController do
       body = JSON.parse(response.body)
 
       # Assert
-      expect(response).must_be :not_found?
+      expect(response).must_be :successful?
       expect(response.header['Content-Type']).must_include 'json'
-      expect(body["ok"]).must_equal false
-      expect(body["cause"]).must_equal "not_found"
+
+      expect(Board.find_by(name: adas.name)).wont_be_nil
     end
   end
 

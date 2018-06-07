@@ -5,8 +5,11 @@ class BoardsController < ApplicationController
 
   def show
     @board = Board.find_by(name: params[:name])
+    if @board.nil? && !params[:name].nil? && params[:name] != ""
+      @board = Board.create(name: params[:name])
+    end
 
-    render json: {ok: false, cause: :not_found}, status: :not_found if @board.nil?
+    render json: {ok: false, cause: :bad_request}, status: :bad_request if @board.nil?
   end
 
   def destroy
