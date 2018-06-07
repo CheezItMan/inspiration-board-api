@@ -6,6 +6,7 @@ This API is intended for use with our second React project Ada's Inpiration Boar
   - **Retrieve list of all Boards:** https://inspiration-board.herokuapp.com/boards
 
   - **Retrieve list of cards for a single board From Name:** https://inspiration-board.herokuapp.com/boards/Ada-Lovelace/cards
+    - **Note** if a board with the given `board_name` does not exist, it will be created
 
   - **Retrieve specific card:** https://inspiration-board.herokuapp.com/boards/:board_name/cards/:card_id
 
@@ -21,6 +22,7 @@ This API is intended for use with our second React project Ada's Inpiration Boar
     - accepted params:
       - text (string)
       - emoji (string)
+    - **Note** if a board with the given name does not exist it will be created
 
 ## Update Data
 
@@ -28,6 +30,7 @@ This API is intended for use with our second React project Ada's Inpiration Boar
   - PATCH https://inspiration-board.herokuapp.com/boards/:board_name/cards/:card_id
   - text (string)
   - emoji (string)
+  - **NOTE** if the given board name does not exist it will be created.
 
 ## Delete Data
 - **Delete a board, warning destroys all card data for that board**
