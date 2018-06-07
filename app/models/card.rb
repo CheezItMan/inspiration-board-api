@@ -1,9 +1,12 @@
+
+VALID_EMOJIS = ["👍", "💯", "🍺", "😊", "🐱", "🐶", "🛌"]
+
 class Card < ApplicationRecord
   belongs_to :board
 
-  validates :text, presence: { if: :image_url_blank?, message: "can't be blank" }
+  validates :text, presence: { if: :emoji_valid?, message: "invalid text or emoji" }
 
-  def image_url_blank?
-    return self.image_url.nil?  || self.image_url.length < 1
+  def emoji_valid?
+    return self.emoji.nil?  || VALID_EMOJIS.includes?(self.emoji)
   end
 end
