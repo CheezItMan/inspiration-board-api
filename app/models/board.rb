@@ -18,11 +18,15 @@ class Board < ApplicationRecord
 
     template = Board.first
 
-    template.cards.each do |card|
-      board.cards << (Card.create text: card.text, emoji: card.emoji)
-    end
+    Board.transaction do
 
-    board.save
+      template.cards.each do |card|
+        board.cards << (Card.create text: card.text, emoji: card.emoji)
+      end
+
+      board.save
+
+    end
 
     return board
   end
