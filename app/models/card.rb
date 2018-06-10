@@ -8,8 +8,7 @@ class Card < ApplicationRecord
 
 
   def valid_fields
-    if ((self.text.nil? || self.text.length < 1) && \
-      !VALID_EMOJIS.include?(self.emoji))
+    if self.text.blank? && !VALID_EMOJIS.include?(self.emoji)
       errors.add(:text, "invalid text or missing emoji")
     end
   end
