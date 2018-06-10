@@ -5,7 +5,7 @@ class BoardsController < ApplicationController
 
   def show
     @board = Board.find_by(name: params[:name])
-    if @board.nil? && !params[:name].nil? && params[:name] != ""
+    if @board.nil? && params[:name].present?
       @board = Board.create_new_board(params[:name])
     end
 
