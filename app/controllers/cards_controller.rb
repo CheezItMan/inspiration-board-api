@@ -46,9 +46,6 @@ class CardsController < ApplicationController
   def update
     @card = Card.find_by(id: params[:id])
     @card.board = Board.find_by(name: params[:board_name])
-    if @card.board.nil?
-      @card.board = Board.create_new_board params[:board_name]
-    end
     @card.update(card_params)
 
     if !@card.valid?
@@ -58,6 +55,6 @@ class CardsController < ApplicationController
 
   private
     def card_params
-      return params.permit(:text, :emoji, :id)
+      return params.permit(:text, :emoji)
     end
 end
