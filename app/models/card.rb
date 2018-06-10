@@ -6,6 +6,13 @@ class Card < ApplicationRecord
 
   validate :valid_fields
 
+  def self.valid_emojis
+    return VALID_EMOJIS
+  end
+
+
+
+
 
   def valid_fields
     if self.text.blank? && !VALID_EMOJIS.include?(self.emoji)

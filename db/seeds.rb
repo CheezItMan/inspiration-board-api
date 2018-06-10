@@ -6,7 +6,6 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-VALID_EMOJIS = ["heart_eyes", "beer", "clap", "sparkling_heart", "heart_eyes_cat", "dog"]
 
 Board.create(name: 'Ada-Lovelace')
 
@@ -59,13 +58,13 @@ cards = [
     text: "You can do it!"
   },
   {
-    emoji: VALID_EMOJIS.sample
+    emoji: Card.valid_emojis.sample
   },
   {
-    emoji: VALID_EMOJIS.sample
+    emoji: Card.valid_emojis.sample
   },
   {
-    emoji: VALID_EMOJIS.sample
+    emoji: Card.valid_emojis.sample
   }
 ]
 
